@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoList - 今日待办</title>
+    <link rel="stylesheet" href="style/index.css" />
+  </head>
+  <body>
+    <header class="top-bar">
+      <h1>ToDoList</h1>
+      <div class="toolbar">
+        <button id="themeToggle" class="ghost-btn">🌗 主题</button>
+      </div>
+    </header>
+
+    <main class="app-shell">
+      <section class="quick-create card">
+        <h2>极速创建</h2>
+        <form id="taskForm">
+          <input id="taskInput" type="text" placeholder="输入任务，如：明天买奶茶" autocomplete="off" required />
+          <button type="submit">添加</button>
+        </form>
+        <div class="quick-options">
+          <label>
+            优先级
+            <select id="quickPriority">
+              <option value="high">高</option>
+              <option value="medium" selected>中</option>
+              <option value="low">低</option>
+            </select>
+          </label>
+          <label>
+            快速日期
+            <select id="quickDate">
+              <option value="today" selected>今天</option>
+              <option value="tomorrow">明天</option>
+              <option value="week">本周</option>
+              <option value="none">无日期</option>
+            </select>
+          </label>
+        </div>
+      </section>
+
+      <section class="tabs card">
+        <button class="tab active" data-view="today">今日待办</button>
+        <button class="tab" data-view="inbox">收件箱（无日期）</button>
+        <button class="tab" data-view="all">全部任务</button>
+      </section>
+
+      <section id="taskListSection" class="card">
+        <div class="section-head">
+          <h2 id="viewTitle">今日待办</h2>
+          <span id="taskStats"></span>
+        </div>
+        <ul id="taskList" class="task-list"></ul>
+      </section>
+    </main>
+
+    <dialog id="taskDialog">
+      <form method="dialog" id="taskDetailForm">
+        <h3>任务详情</h3>
+        <input type="hidden" id="detailId" />
+        <label>标题<input id="detailTitle" required /></label>
+        <label>备注<textarea id="detailNote" rows="3" placeholder="可选备注"></textarea></label>
+        <div class="grid-2">
+          <label>日期<input id="detailDate" type="date" /></label>
+          <label>优先级
+            <select id="detailPriority">
+              <option value="high">高</option>
+              <option value="medium">中</option>
+              <option value="low">低</option>
+            </select>
+          </label>
+        </div>
+        <label>标签（逗号分隔）<input id="detailTags" placeholder="工作,学习" /></label>
+        <label>子任务（每行一条）<textarea id="detailSubtasks" rows="4" placeholder="买牛奶\n给老板发邮件"></textarea></label>
+        <menu>
+          <button value="cancel" type="button" id="dialogCancel">取消</button>
+          <button value="default" type="submit">保存</button>
+        </menu>
+      </form>
+    </dialog>
+
+    <script src="script/index.js"></script>
+  </body>
+</html>
